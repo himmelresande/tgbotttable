@@ -1,0 +1,91 @@
+create database timestable3_db;
+\c timestable3_db
+
+create table subject
+(
+  id serial not null,
+  name varchar(1000) not null unique,
+  constraint name_id primary key (id, name)
+);
+
+create table timetable_week1
+(
+  id serial not null primary key,
+  day varchar(1000) not null,
+  subject varchar(1000) not null references subject(name),
+  room_numb varchar(1000) not null,
+  start_time varchar(1000) not null,
+  finish_time varchar(1000) not null
+);
+
+create table timetable_week2
+(
+  id serial not null primary key,
+  day varchar(1000) not null,
+  subject varchar(1000) not null references subject(name),
+  room_numb varchar(1000) not null,
+  start_time varchar(1000) not null,
+  finish_time varchar(1000) not null
+);
+
+create table teacher
+(
+  id serial not null primary key,
+  full_name varchar(1000) not null,
+  subject varchar(1000) not null references subject(name)
+ );
+
+
+# inserts subjects
+insert into subject (name) values ('english');
+insert into subject (name) values ('math');
+insert into subject (name) values ('IiIT');
+insert into subject (name) values ('DevOps');
+insert into subject (name) values ('PE');
+insert into subject (name) values ('physics');
+insert into subject (name) values ('history');
+insert into subject (name) values ('databases');
+insert into subject (name) values ('project');
+
+
+# inserts week1
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Monday','english','H412','13:10','14:45');
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Monday','math','H314','15:25','17:00');
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Tuesday','IiIT','A312','09:30','11:05');
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Tuesday','DevOps','A302','11:20','12:55');
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Wednesday','PE','HGym','11:20','12:55');
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Wednesday','math','H514','13:10','14:45');
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Wednesday','physics','H226','15:25','17:00');
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Thursday','physics','H332','09:30','11:05');
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Thursday','history','H318','11:20','12:55');
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Thursday','PE','HGym','13:10','14:45');
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Friday','history','H227','09:30','11:05');
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Friday','databases','H535','11:20','12:55');
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Friday','databases','H401','13:10','14:45');
+insert into timetable_week1 (day, subject, room_numb, start_time, finish_time) values ('Friday','databases','H519','15:25','17:00');
+
+# inserts week2
+insert into timetable_week2 (day, subject, room_numb, start_time, finish_time) values ('Monday','math','H514','11:20','12:55');
+insert into timetable_week2 (day, subject, room_numb, start_time, finish_time) values ('Monday','math','H330','13:10','14:45');
+insert into timetable_week2 (day, subject, room_numb, start_time, finish_time) values ('Monday','PE','HGym','15:25','17:00');
+insert into timetable_week2 (day, subject, room_numb, start_time, finish_time) values ('Monday','english','H418','17:15','18:50');
+insert into timetable_week2 (day, subject, room_numb, start_time, finish_time) values ('Tuesday','PE','HGym','09:30','11:05');
+insert into timetable_week2 (day, subject, room_numb, start_time, finish_time) values ('Tuesday','history','H318','11:20','12:55');
+insert into timetable_week2 (day, subject, room_numb, start_time, finish_time) values ('Tuesday','physics','H340','13:10','14:45');
+insert into timetable_week2 (day, subject, room_numb, start_time, finish_time) values ('Wednesday','DevOps','Alab6','13:10','14:45');
+insert into timetable_week2 (day, subject, room_numb, start_time, finish_time) values ('Wednesday','DevOps','A302','15:25','17:00');
+insert into timetable_week2 (day, subject, room_numb, start_time, finish_time) values ('Friday','project','A211','11:20','12:55');
+insert into timetable_week2 (day, subject, room_numb, start_time, finish_time) values ('Friday','ViIT','A203','13:10','14:45');
+insert into timetable_week2 (day, subject, room_numb, start_time, finish_time) values ('Friday','ViIT','A208','15:25','17:00');
+
+
+# inserts teachers
+insert into teacher (full_name, subject) values ('Lapaev Lev Lvyovich','english');
+insert into teacher (full_name, subject) values ('Shaymardanova Lilya Kematovna','math');
+insert into teacher (full_name, subject) values ('Furletov Yurii Mightveforgottenthesecondname','IiIT');
+insert into teacher (full_name, subject) values ('Andrey.','DevOps');
+insert into teacher (full_name, subject) values ('Korolev Igor Viktorovich','PE');
+insert into teacher (full_name, subject) values ('Valkovsky Sergei Nikolayevich','physics');
+insert into teacher (full_name, subject) values ('Sklyar Lidia Nikolayevna','history');
+insert into teacher (full_name, subject) values ('Izotova Anastasia Andreevna','basics of databases');
+insert into teacher (full_name, subject) values ('Potapchenko.','project');
